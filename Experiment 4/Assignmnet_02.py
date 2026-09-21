@@ -5,8 +5,6 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-# 1. Dataset
-# Columns: Area and Number of Bedrooms
 X = np.array([
     [500, 1],
     [700, 2],
@@ -18,18 +16,14 @@ X = np.array([
     [1900, 5]
 ])
 
-# House prices in lakh
 y = np.array([20, 28, 35, 43, 50, 58, 66, 74])
 
-# 2. Create and train model
 model = LinearRegression()
 model.fit(X, y)
 
-# 3. Prediction
 y_pred = model.predict(X)
 
-# 4. Predict price for a new house
-# Area = 1200 sq. ft., Bedrooms = 3
+
 new_house = np.array([[1200, 3]])
 predicted_price = model.predict(new_house)
 
@@ -37,12 +31,10 @@ print("Predicted House Price:",
       round(predicted_price[0], 2),
       "lakh")
 
-# 5. Display coefficients
 print("\nCoefficient of Area:", model.coef_[0])
 print("Coefficient of Bedrooms:", model.coef_[1])
 print("Intercept:", model.intercept_)
 
-# 6. Evaluation
 mae = mean_absolute_error(y, y_pred)
 mse = mean_squared_error(y, y_pred)
 rmse = np.sqrt(mse)
