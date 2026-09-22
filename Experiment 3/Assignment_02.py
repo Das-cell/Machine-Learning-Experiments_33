@@ -14,7 +14,6 @@ df = pd.DataFrame(data)
 print("--- Original Data ---")
 print(df)
 
-# Apply MinMaxScaler
 scaler = MinMaxScaler()
 
 scaled_data = scaler.fit_transform(df)
