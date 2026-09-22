@@ -11,7 +11,7 @@ data = {
 
 df = pd.DataFrame(data)
 
-# StandardScaler
+
 standard_scaler = StandardScaler()
 standard_data = standard_scaler.fit_transform(df)
 
@@ -20,7 +20,7 @@ standard_df = pd.DataFrame(
     columns=df.columns
 )
 
-# MinMaxScaler
+
 minmax_scaler = MinMaxScaler()
 minmax_data = minmax_scaler.fit_transform(df)
 
