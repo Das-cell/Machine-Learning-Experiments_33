@@ -8,7 +8,6 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 
-# 1. Create dataset with missing values
 data = {
     "Age": [22, 25, None, 28, 30, 24],
     "Salary": [25000, 32000, 28000, None, 45000, 30000],
@@ -23,12 +22,9 @@ df = pd.DataFrame(data)
 print("--- Original Dataset ---")
 print(df)
 
-# 2. Separate features and target
-# Here, Salary is selected as the target
 X = df.drop("Salary", axis=1)
 y = df["Salary"]
 
-# 3. Define columns
 numeric_features = [
     "Age",
     "Years_Experience"
@@ -38,13 +34,12 @@ categorical_features = [
     "Department"
 ]
 
-# 4. Numerical preprocessing
+
 numeric_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="median")),
     ("scaler", StandardScaler())
 ])
 
-# 5. Categorical preprocessing
 categorical_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("onehot", OneHotEncoder(
@@ -53,7 +48,6 @@ categorical_transformer = Pipeline(steps=[
     ))
 ])
 
-# 6. Combine transformations
 preprocessor = ColumnTransformer(
     transformers=[
         ("num", numeric_transformer, numeric_features),
@@ -61,10 +55,9 @@ preprocessor = ColumnTransformer(
     ]
 )
 
-# 7. Apply preprocessing
 X_processed = preprocessor.fit_transform(X)
 
-# 8. Split data
+
 X_train, X_test, y_train, y_test = train_test_split(
     X_processed,
     y,
@@ -72,7 +65,6 @@ X_train, X_test, y_train, y_test = train_test_split(
     random_state=42
 )
 
-# 9. Display results
 print("\n--- Processed Data ---")
 print(X_processed)
 
